@@ -1,0 +1,8 @@
+I set framework: >= net461 in the paket.dependencies file
+I set the same value in <TargetFramework>net461</TargetFramework>
+I added <RuntimeIdentifier>win7-x64</RuntimeIdentifier> under the TargetFramework value
+
+you can then run:
+
+david.podhola@DESKTOP-3EFJ3F0 C:\Users\david.podhola\Documents\S\fable-suave-scaffold\src\Server\bin\Debug\net461
+> Server.exe C:\Users\david.podhola\Documents\S\fable-suave-scaffold\src\Client
