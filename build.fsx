@@ -257,6 +257,8 @@ let port = 8080
 FinalTarget "KillProcess" (fun _ ->
     killProcess "dotnet"
     killProcess "dotnet.exe"
+    killProcess "Server"
+    killProcess "Server.exe"
 )
 
 
