@@ -41,8 +41,8 @@ let deployDir = "./deploy"
 // Pattern specifying assemblies to be tested using expecto
 let testExecutables = "test/**/bin/Release/*Tests*.exe"
 
-let dockerUser = "forki"
-let dockerImageName = "fable-suave"
+let dockerUser = "davidpodhola"
+let dockerImageName = "fable-suave-scaffold"
 
 // --------------------------------------------------------------------------------------
 // END TODO: The rest of the file includes standard build steps
