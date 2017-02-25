@@ -1,5 +1,6 @@
 module ServerCode.Server
 
+open System
 open System.IO
 open Suave
 open Suave.Logging
@@ -21,11 +22,21 @@ let startServer clientPath =
 
     let logger = Logging.Targets.create Logging.Info [| "Suave" |]
 
+    /// Port specified by IIS HttpPlatformHandler
+    let defaultPort = 8085us
+    let httpPlatformPort =
+        match Environment.GetEnvironmentVariable("HTTP_PLATFORM_PORT") with
+        | null -> defaultPort
+        | value ->
+            match Int32.TryParse(value) with
+            | true, value -> uint16 value
+            | false, _ -> defaultPort
+
     let serverConfig =
         { defaultConfig with
             logger = Targets.create LogLevel.Debug [||]
             homeFolder = Some clientPath
-            bindings = [ HttpBinding.create HTTP (IPAddress.Parse "0.0.0.0") 8085us] }
+            bindings = [ HttpBinding.create HTTP (IPAddress.Parse "0.0.0.0") httpPlatformPort ] }
 
     let app =
         choose [
