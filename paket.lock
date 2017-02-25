@@ -77,7 +77,7 @@ NUGET
     FAKE (4.50.1)
 
 GROUP Test
-FRAMEWORK: >= NET461
+FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
     Argu (3.7)
@@ -96,27 +96,27 @@ NUGET
     Microsoft.Win32.Primitives (4.3) - framework: >= net463
     Mono.Cecil (0.9.6.4)
     NETStandard.Library (1.6.1) - framework: >= net463
-      Microsoft.Win32.Primitives (>= 4.3)
-      System.AppContext (>= 4.3)
+      Microsoft.Win32.Primitives (>= 4.3) - framework: >= net46
+      System.AppContext (>= 4.3) - framework: >= net46
       System.Collections.Concurrent (>= 4.3)
-      System.Console (>= 4.3)
+      System.Console (>= 4.3) - framework: >= net46
       System.Diagnostics.Tracing (>= 4.3)
-      System.Globalization.Calendars (>= 4.3)
+      System.Globalization.Calendars (>= 4.3) - framework: >= net46
       System.IO.Compression (>= 4.3)
-      System.IO.Compression.ZipFile (>= 4.3)
-      System.IO.FileSystem (>= 4.3)
-      System.IO.FileSystem.Primitives (>= 4.3)
+      System.IO.Compression.ZipFile (>= 4.3) - framework: >= net46
+      System.IO.FileSystem (>= 4.3) - framework: >= net46
+      System.IO.FileSystem.Primitives (>= 4.3) - framework: >= net46
       System.Net.Http (>= 4.3)
-      System.Net.Sockets (>= 4.3)
-      System.Runtime.Handles (>= 4.3)
+      System.Net.Sockets (>= 4.3) - framework: >= net46
+      System.Runtime.Handles (>= 4.3) - framework: >= net46
       System.Runtime.InteropServices (>= 4.3)
       System.Runtime.InteropServices.RuntimeInformation (>= 4.3)
       System.Runtime.Numerics (>= 4.3)
-      System.Security.Cryptography.Algorithms (>= 4.3)
-      System.Security.Cryptography.Encoding (>= 4.3)
-      System.Security.Cryptography.Primitives (>= 4.3)
-      System.Security.Cryptography.X509Certificates (>= 4.3)
-      System.Threading.Timer (>= 4.3)
+      System.Security.Cryptography.Algorithms (>= 4.3) - framework: >= net46
+      System.Security.Cryptography.Encoding (>= 4.3) - framework: >= net46
+      System.Security.Cryptography.Primitives (>= 4.3) - framework: >= net46
+      System.Security.Cryptography.X509Certificates (>= 4.3) - framework: >= net46
+      System.Threading.Timer (>= 4.3) - framework: >= net451
     PhantomJS (2.1.1)
     Selenium.WebDriver (3.0)
     System.AppContext (4.3) - framework: >= net463
@@ -128,10 +128,10 @@ NUGET
     System.IO.Compression (4.3) - framework: >= net463
     System.IO.Compression.ZipFile (4.3) - framework: >= net463
     System.IO.FileSystem (4.3) - framework: >= net463
-      System.IO.FileSystem.Primitives (>= 4.3)
+      System.IO.FileSystem.Primitives (>= 4.3) - framework: >= net46
     System.IO.FileSystem.Primitives (4.3)
     System.Net.Http (4.3.1) - framework: >= net463
-      System.Security.Cryptography.X509Certificates (>= 4.3)
+      System.Security.Cryptography.X509Certificates (>= 4.3) - framework: >= net46
     System.Net.Sockets (4.3) - framework: >= net463
     System.Runtime (4.3)
     System.Runtime.Handles (4.3) - framework: >= net463
@@ -143,12 +143,12 @@ NUGET
       System.IO (>= 4.3) - framework: >= net463
       System.Runtime (>= 4.3) - framework: >= net463
       System.Security.Cryptography.Encoding (>= 4.3) - framework: >= net463
-      System.Security.Cryptography.Primitives (>= 4.3) - framework: net461, >= net463
+      System.Security.Cryptography.Primitives (>= 4.3) - framework: net46, net461, >= net463
     System.Security.Cryptography.Encoding (4.3)
     System.Security.Cryptography.Primitives (4.3)
     System.Security.Cryptography.X509Certificates (4.3)
-      System.Security.Cryptography.Algorithms (>= 4.3)
-      System.Security.Cryptography.Encoding (>= 4.3)
+      System.Security.Cryptography.Algorithms (>= 4.3) - framework: >= net46
+      System.Security.Cryptography.Encoding (>= 4.3) - framework: >= net46
     System.Threading.Timer (4.3) - framework: >= net463
     System.ValueTuple (4.3) - redirects: force
     System.Xml.XDocument (4.3) - framework: >= net463
