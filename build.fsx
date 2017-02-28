@@ -9,7 +9,6 @@ open Fake
 open Fake.Git
 open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
-open Fake.UserInputHelper
 open System
 open System.IO
 open Fake.Testing.Expecto
@@ -41,8 +40,8 @@ let deployDir = "./deploy"
 // Pattern specifying assemblies to be tested using expecto
 let testExecutables = "test/**/bin/Release/*Tests*.exe"
 
-let dockerUser = "forki"
-let dockerImageName = "fable-suave"
+let dockerUser = "davidpodhola"
+let dockerImageName = "fable-suave-scaffold"
 
 // --------------------------------------------------------------------------------------
 // END TODO: The rest of the file includes standard build steps
@@ -60,7 +59,8 @@ let run' timeout cmd args dir =
 let run = run' System.TimeSpan.MaxValue
 
 let platformTool tool winTool =
-    if isUnix then tool else winTool
+    let tool = if isUnix then tool else winTool
+    tool
     |> ProcessHelper.tryFindFileOnPath
     |> function Some t -> t | _ -> failwithf "%s not found" tool 
 
@@ -146,13 +146,14 @@ Target "InstallDotNetCore" (fun _ ->
                 sprintf "dotnet-dev-ubuntu-x64.%s.tar.gz" dotnetcliVersion
             else
                 sprintf "dotnet-dev-osx-x64.%s.tar.gz" dotnetcliVersion
-        let downloadPath = 
-                sprintf "https://dotnetcli.azureedge.net/dotnet/Sdk/%s/%s" dotnetcliVersion archiveFileName
+        let downloadPath = sprintf "https://dotnetcli.azureedge.net/dotnet/Sdk/%s/%s" dotnetcliVersion archiveFileName
         let localPath = Path.Combine(dotnetSDKPath, archiveFileName)
 
         tracefn "Installing '%s' to '%s'" downloadPath localPath
         
-        use webclient = new Net.WebClient()
+        let proxy = Net.WebRequest.DefaultWebProxy
+        proxy.Credentials <- Net.CredentialCache.DefaultCredentials
+        use webclient = new Net.WebClient(Proxy = proxy)
         webclient.DownloadFile(downloadPath, localPath)
 
         if not isWindows then
@@ -222,7 +223,7 @@ Target "BuildTests" (fun _ ->
 Target "RenameDrivers" (fun _ ->
     if not isWindows then
         run npmTool "install phantomjs" ""
-    if isMacOS then
+    if isMacOS && not <| File.Exists "test/UITests/bin/Release/chromedriver" then
         Fake.FileHelper.Rename "test/UITests/bin/Release/chromedriver" "test/UITests/bin/Release/chromedriver_macOS"
     elif isLinux then
         Fake.FileHelper.Rename "test/UITests/bin/Release/chromedriver" "test/UITests/bin/Release/chromedriver_linux64"    
